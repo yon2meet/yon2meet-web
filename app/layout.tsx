@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReactNode } from "react";
+import HeadBar from "@/components/head-bar";
 
 export const metadata: Metadata = {
   title: "연투밋",
@@ -13,8 +14,11 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body>{children}</body>
+    <html lang="ko" className={"bg-neutral-50"}>
+      <body>
+        <HeadBar />
+        {children}
+      </body>
     </html>
   );
 }
