@@ -1,6 +1,12 @@
 "use client";
 
-import { startOfMonth, endOfMonth, eachDayOfInterval } from "date-fns";
+import {
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  isSameDay,
+} from "date-fns";
+import { useCreateSchedule } from "@/lib/stores/create-schedule";
 
 function getMonthDates(year: number, month: number) {
   const startDate = startOfMonth(new Date(year, month - 1, 1));
@@ -12,6 +18,62 @@ function getMonthDates(year: number, month: number) {
   });
 }
 
+function CalenderHeader() {
+  return (
+    <>
+      <div
+        className={
+          "bg-neutral-200 text-center flex items-center justify-center rounded-tl-lg"
+        }
+      >
+        일
+      </div>
+      <div
+        className={
+          "bg-neutral-200 text-center flex items-center justify-center"
+        }
+      >
+        월
+      </div>
+      <div
+        className={
+          "bg-neutral-200 text-center flex items-center justify-center"
+        }
+      >
+        화
+      </div>
+      <div
+        className={
+          "bg-neutral-200 text-center flex items-center justify-center"
+        }
+      >
+        수
+      </div>
+      <div
+        className={
+          "bg-neutral-200 text-center flex items-center justify-center"
+        }
+      >
+        목
+      </div>
+      <div
+        className={
+          "bg-neutral-200 text-center flex items-center justify-center"
+        }
+      >
+        금
+      </div>
+      <div
+        className={
+          "bg-neutral-200 text-center flex items-center justify-center rounded-tr-lg"
+        }
+      >
+        토
+      </div>
+    </>
+  );
+}
+
 export default function Calendar({
   year,
   month,
@@ -19,66 +81,35 @@ export default function Calendar({
   year: number;
   month: number;
 }) {
+  const { setStart, setEnd, start, end } = useCreateSchedule((state) => state);
+
   const dates = getMonthDates(year, month);
   const emptyDates = [];
   for (let i = 0; i < dates[0].getDay(); i++) {
     emptyDates.push(1);
   }
+
+  function handlePickDate(date: Date) {
+    if (start === undefined) {
+      setStart(date);
+    } else if (date < start) {
+      setStart(date);
+      setEnd(undefined);
+    } else if (start && end) {
+      setStart(date);
+      setEnd(undefined);
+    } else {
+      setEnd(date);
+    }
+  }
+
   return (
     <div className={"flex flex-col items-center justify-center p-4 w-full"}>
-      <div className={"font-semibold text-lg"}>
+      <div className={"font-semibold text-xl"}>
         {year}년 {month}월
       </div>
       <div className={"grid grid-cols-7 w-full place-items-stretch aspect-1"}>
-        <div
-          className={
-            "bg-neutral-200 text-center flex items-center justify-center rounded-tl-lg"
-          }
-        >
-          일
-        </div>
-        <div
-          className={
-            "bg-neutral-200 text-center flex items-center justify-center"
-          }
-        >
-          월
-        </div>
-        <div
-          className={
-            "bg-neutral-200 text-center flex items-center justify-center"
-          }
-        >
-          화
-        </div>
-        <div
-          className={
-            "bg-neutral-200 text-center flex items-center justify-center"
-          }
-        >
-          수
-        </div>
-        <div
-          className={
-            "bg-neutral-200 text-center flex items-center justify-center"
-          }
-        >
-          목
-        </div>
-        <div
-          className={
-            "bg-neutral-200 text-center flex items-center justify-center"
-          }
-        >
-          금
-        </div>
-        <div
-          className={
-            "bg-neutral-200 text-center flex items-center justify-center rounded-tr-lg"
-          }
-        >
-          토
-        </div>
+        <CalenderHeader />
         {emptyDates.map((_, index) => (
           <div key={index} />
         ))}
@@ -86,9 +117,9 @@ export default function Calendar({
           <button
             type={"button"}
             disabled={date.getMonth() !== month - 1}
-            onClick={() => console.log(date.getDate())}
+            onClick={() => handlePickDate(date)}
             key={index}
-            className={`flex items-center justify-center ${date.getMonth() !== month - 1 ? "bg-neutral-300 cursor-not-allowed" : ""}`}
+            className={`flex items-center justify-center ${isSameDay(date, start!) ? "rounded-l-xl" : ""} ${isSameDay(date, end!) ? "rounded-r-xl" : ""} ${isSameDay(date, start!) || isSameDay(date, end!) ? "bg-sky-500 text-white" : ""} ${start! < date && date < end! ? "bg-sky-200" : ""}`}
           >
             <div>{date.getDate()}</div>
           </button>

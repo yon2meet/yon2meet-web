@@ -1,23 +1,7 @@
 import Calendar from "@/components/calendar";
-
-function ScheduleName() {
-  return (
-    <div
-      className={
-        "w-full h-1/3 flex flex-col items-center justify-center bg-neutral-800 text-white gap-4 p-4"
-      }
-    >
-      <div className={"text-3xl font-bold"}>새 약속 만들기</div>
-      <input
-        type={"text"}
-        className={
-          "p-2 rounded-full bg-neutral-800 ring-2 px-4 ring-neutral-50 focus:ring-sky-500 w-full focus:outline-none"
-        }
-        placeholder={"약속 이름"}
-      />
-    </div>
-  );
-}
+import ScheduleNameInput from "@/components/schedule-name-input";
+import ParticipantsInput from "@/components/participants-input";
+import CreateScheduleButton from "@/components/create-schedule-button";
 
 export default function HomePage() {
   const currentYear = new Date().getFullYear();
@@ -32,8 +16,12 @@ export default function HomePage() {
   }
 
   return (
-    <div className={"w-screen h-screen pt-12 flex flex-col"}>
-      <ScheduleName />
+    <div
+      className={
+        "w-screen h-screen pt-12 flex flex-col items-center justify-center"
+      }
+    >
+      <ScheduleNameInput />
       <div
         className={"w-full h-1/2 flex flex-col p-2 items-center justify-center"}
       >
@@ -47,6 +35,11 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+      <div className={"w-full flex-col flex bg-white p-4"}>
+        <div className={"mr-auto text-sm p-2"}>참석 인원수</div>
+        <ParticipantsInput />
+      </div>
+      <CreateScheduleButton />
     </div>
   );
 }
