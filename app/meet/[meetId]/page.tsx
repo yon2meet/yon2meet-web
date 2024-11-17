@@ -1,13 +1,10 @@
 import { ExclamationCircleIcon, ShareIcon } from "@heroicons/react/24/outline";
+import Banner from "@/app/components/banner";
 
 export default function MeetPage() {
   return (
     <div className={"layout flex flex-col"}>
-      <div
-        className={
-          "p-4 py-8 bg-sky-800 text-white flex items-center justify-between"
-        }
-      >
+      <Banner>
         <div>
           <div className={"text-sm"}>현재 입력한 인원: 0/5</div>
           <div className={"text-2xl font-bold"}>1차 킥오프 미팅</div>
@@ -15,7 +12,7 @@ export default function MeetPage() {
         <button type={"button"} className={"p-2 rounded-full bg-sky-600"}>
           <ShareIcon className={"size-6"} />
         </button>
-      </div>
+      </Banner>
       <div
         className={"w-full h-full flex flex-col items-center justify-center"}
       >
