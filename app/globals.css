@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .layout {
+        @apply w-screen h-screen pt-12;
+    }
+}

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReactNode } from "react";
-import Index from "@/components/head-bar";
-import Sidebar from "@/components/head-bar/sidebar";
+import Index from "@/app/components/head-bar";
+import Sidebar from "@/app/components/head-bar/sidebar";
 
 export const metadata: Metadata = {
   title: "연투밋",

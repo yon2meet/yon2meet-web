@@ -1,7 +1,7 @@
-import Calendar from "@/components/calendar";
-import ScheduleNameInput from "@/components/schedule-name-input";
-import ParticipantsInput from "@/components/participants-input";
-import CreateScheduleButton from "@/components/create-schedule-button";
+import Calendar from "@/app/components/calendar";
+import ScheduleNameInput from "@/app/components/schedule-name-input";
+import ParticipantsInput from "@/app/components/participants-input";
+import CreateScheduleButton from "@/app/components/create-schedule-button";
 
 export default function HomePage() {
   const currentYear = new Date().getFullYear();
@@ -16,11 +16,7 @@ export default function HomePage() {
   }
 
   return (
-    <div
-      className={
-        "w-screen h-screen pt-12 flex flex-col items-center justify-center"
-      }
-    >
+    <div className={"layout flex flex-col items-center justify-center"}>
       <ScheduleNameInput />
       <div
         className={"w-full h-1/2 flex flex-col p-2 items-center justify-center"}

@@ -1,13 +1,18 @@
 "use client";
 
 import { useCreateSchedule } from "@/lib/stores/create-schedule";
+import { useRouter } from "next/navigation";
 
 export default function CreateScheduleButton() {
   const { title, start, end, participants } = useCreateSchedule(
     (state) => state,
   );
+
+  const router = useRouter();
+
   function handleCreateSchedule() {
     console.log({ title, start, end, participants });
+    router.push("/meet/1");
   }
 
   return (
