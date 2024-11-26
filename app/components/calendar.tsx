@@ -22,51 +22,17 @@ function CalenderHeader() {
   return (
     <>
       <div
-        className={
-          "bg-neutral-200 text-center flex items-center justify-center rounded-tl-lg"
-        }
+        className={"border-b-2 flex items-center justify-center rounded-tl-lg"}
       >
         일
       </div>
+      <div className={"border-b-2 flex items-center justify-center"}>월</div>
+      <div className={"border-b-2 flex items-center justify-center"}>화</div>
+      <div className={"border-b-2 flex items-center justify-center"}>수</div>
+      <div className={"border-b-2 flex items-center justify-center"}>목</div>
+      <div className={"border-b-2 flex items-center justify-center"}>금</div>
       <div
-        className={
-          "bg-neutral-200 text-center flex items-center justify-center"
-        }
-      >
-        월
-      </div>
-      <div
-        className={
-          "bg-neutral-200 text-center flex items-center justify-center"
-        }
-      >
-        화
-      </div>
-      <div
-        className={
-          "bg-neutral-200 text-center flex items-center justify-center"
-        }
-      >
-        수
-      </div>
-      <div
-        className={
-          "bg-neutral-200 text-center flex items-center justify-center"
-        }
-      >
-        목
-      </div>
-      <div
-        className={
-          "bg-neutral-200 text-center flex items-center justify-center"
-        }
-      >
-        금
-      </div>
-      <div
-        className={
-          "bg-neutral-200 text-center flex items-center justify-center rounded-tr-lg"
-        }
+        className={"border-b-2 flex items-center justify-center rounded-tr-lg"}
       >
         토
       </div>
@@ -119,7 +85,7 @@ export default function Calendar({
             disabled={date.getMonth() !== month - 1}
             onClick={() => handlePickDate(date)}
             key={index}
-            className={`flex items-center justify-center ${isSameDay(date, start!) ? "rounded-l-xl" : ""} ${isSameDay(date, end!) ? "rounded-r-xl" : ""} ${isSameDay(date, start!) || isSameDay(date, end!) ? "bg-sky-500 text-white" : ""} ${start! < date && date < end! ? "bg-sky-200" : ""}`}
+            className={`flex items-center justify-center ${isSameDay(date, start!) ? "rounded-l-xl" : ""} ${isSameDay(date, end!) ? "rounded-r-xl" : ""} ${isSameDay(date, start!) || isSameDay(date, end!) ? "bg-emerald-500 text-white" : ""} ${start! < date && date < end! ? "bg-emerald-200" : ""} ${date.getDay() === 0 && !(isSameDay(date, start!) || isSameDay(date, end!)) ? "text-red-600" : ""} ${date.getDay() === 6 && !(isSameDay(date, start!) || isSameDay(date, end!)) ? "text-blue-600" : ""}`}
           >
             <div>{date.getDate()}</div>
           </button>

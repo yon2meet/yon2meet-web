@@ -1,41 +1,22 @@
-import Calendar from "@/app/components/calendar";
 import ScheduleNameInput from "@/app/components/schedule-name-input";
-import ParticipantsInput from "@/app/components/participants-input";
-import CreateScheduleButton from "@/app/components/create-schedule-button";
+import CalendarList from "@/app/components/calendar-list";
+import CreateMeetButton from "@/app/components/create-meet-button";
 
 export default function HomePage() {
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth() + 1;
-  const monthArray: { year: number; month: number }[] = [];
-  for (let i = 0; i < 12; i += 1) {
-    if (currentMonth + i <= 12) {
-      monthArray.push({ year: currentYear, month: currentMonth + i });
-    } else {
-      monthArray.push({ year: currentYear + 1, month: currentMonth + i - 12 });
-    }
-  }
-
   return (
-    <div className={"layout flex flex-col items-center justify-center"}>
+    <div className={"w-full h-screen flex flex-col pt-14 p-4 gap-2"}>
       <ScheduleNameInput />
       <div
-        className={"w-full h-1/2 flex flex-col p-2 items-center justify-center"}
+        className={
+          "overflow-x-auto ring-2 ring-neutral-400 rounded-xl w-full h-full max-w-sm"
+        }
       >
-        <div
-          className={
-            "overflow-y-scroll rounded-xl ring-2 ring-neutral-500 w-full max-w-sm"
-          }
-        >
-          {monthArray.map((data, index) => (
-            <Calendar key={index} year={data.year} month={data.month} />
-          ))}
-        </div>
+        <CalendarList
+          start={{ year: 2024, month: 11 }}
+          end={{ year: 2025, month: 10 }}
+        />
       </div>
-      <div className={"w-full flex-col flex bg-white p-4"}>
-        <div className={"mr-auto text-sm p-2"}>참석 인원수</div>
-        <ParticipantsInput />
-      </div>
-      <CreateScheduleButton />
+      <CreateMeetButton />
     </div>
   );
 }

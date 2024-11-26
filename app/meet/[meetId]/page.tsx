@@ -1,40 +1,30 @@
-import { ExclamationCircleIcon, ShareIcon } from "@heroicons/react/24/outline";
-import Banner from "@/app/components/banner";
+import DefaultLayout from "@/app/components/default-layout";
+import LogInOrAddScheduleButton from "@/app/meet/[meetId]/log-in-or-add-schedule-button";
+import { use } from "react";
+import CopyLinkButton from "@/app/meet/[meetId]/copy-link-button";
 
-export default function MeetPage() {
+export default function MeetPage({
+  params,
+}: {
+  params: Promise<{ meetId: string }>;
+}) {
   return (
-    <div className={"layout flex flex-col"}>
-      <Banner>
+    <DefaultLayout className={"flex flex-col p-4"}>
+      <div className={"w-full py-4 flex items-center justify-between"}>
         <div>
-          <div className={"text-sm"}>현재 입력한 인원: 0/5</div>
-          <div className={"text-2xl font-bold"}>1차 킥오프 미팅</div>
+          <div className={"text-sm"}>0명 입력</div>
+          <div className={"text-3xl font-bold"}>1차 킥오프 미팅</div>
         </div>
-        <button type={"button"} className={"p-2 rounded-full bg-sky-600"}>
-          <ShareIcon className={"size-6"} />
-        </button>
-      </Banner>
+        <CopyLinkButton />
+      </div>
       <div
-        className={"w-full h-full flex flex-col items-center justify-center"}
+        className={
+          "w-full h-full bg-emerald-50 rounded-lg flex items-center justify-center"
+        }
       >
-        <ExclamationCircleIcon className={"size-6"} />
-        <div>아무도 시간표를 입력하지 않았어요.</div>
+        <div>Calendar Area</div>
       </div>
-      <div className={"p-4 w-full flex gap-2 items-center border-t-2"}>
-        <button
-          type={"button"}
-          className={"p-2 py-3 rounded-lg ring-2 ring-sky-500 w-full"}
-        >
-          비로그인으로 계속하기
-        </button>
-        <button
-          type={"button"}
-          className={
-            "p-2 py-3 rounded-lg ring-2 ring-sky-500 bg-sky-500 text-white w-full"
-          }
-        >
-          로그인해서 계속하기
-        </button>
-      </div>
-    </div>
+      <LogInOrAddScheduleButton meetId={use(params).meetId} />
+    </DefaultLayout>
   );
 }
