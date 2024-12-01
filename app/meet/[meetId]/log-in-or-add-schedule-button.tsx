@@ -8,12 +8,12 @@ export default function LogInOrAddScheduleButton({
 }: {
   meetId: string;
 }) {
-  const auth = false;
+  const auth = true;
   return (
     <>
       {auth ? (
         <Link
-          href={`/meet/${meetId}/add-schedule`}
+          href={`/meet/${meetId}/schedule`}
           className={
             "p-2 text-center bg-emerald-500 text-lg text-white rounded-lg"
           }

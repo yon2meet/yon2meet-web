@@ -8,7 +8,7 @@ import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid";
 
 export default function Sidebar() {
   const { isOpen, close } = useSidebar((state) => state);
-  const auth = true;
+  const auth = false;
   return (
     <div
       className={`fixed top-0 z-10 p-4 left-0 w-screen bottom-0 bg-neutral-100 h-screen ${!isOpen ? "-translate-y-full" : "translate-y-0"} transition-all`}
