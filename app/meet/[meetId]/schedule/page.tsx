@@ -1,3 +1,5 @@
+"use client";
+
 import DefaultLayout from "@/app/components/default-layout";
 import WeekCalendar from "@/app/components/week-calendar";
 
