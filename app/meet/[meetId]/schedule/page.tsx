@@ -10,7 +10,7 @@ export default function SchedulePage() {
     >
       <div className={"whitespace-nowrap flex gap-4 px-4 h-full"}>
         <WeekCalendar
-          startDate={new Date(2024, 11, 1)}
+          startDate={new Date(2024, 11, 3)}
           endDate={new Date(2024, 11, 8)}
         />
         <WeekCalendar
