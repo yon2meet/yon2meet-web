@@ -50,7 +50,7 @@ export default function WeekCalendar({
   }
 
   return (
-    <div className={"w-full grid grid-cols-7 h-full"}>
+    <div className={"w-full grid grid-cols-7 h-full overflow-y-hidden"}>
       {dateArray.map((data, i) => (
         <div key={i} className={"h-full  flex flex-col"}>
           <div className={"text-sm flex items-center flex-col"}>

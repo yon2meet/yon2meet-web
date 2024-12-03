@@ -15,7 +15,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="ko" className={"bg-neutral-50"}>
+    <html lang="ko" className={"bg-neutral-50 w-screen overflow-y-hidden"}>
       <body>
         <Index />
         <Sidebar />
